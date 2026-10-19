@@ -1,0 +1,67 @@
+Godot Engine v4.7.2.stable.arch_linux.ed1daf0bf (2026-08-17 01:18:38 UTC) - https://godotengine.org
+Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeManifestFile::FindManifestFiles - failed to determine active runtime file path for this environment
+Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntimes - unknown error
+Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : RuntimeInterface::LoadRuntimes - failed to load a runtime
+Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed to find default runtime with RuntimeInterface::LoadRuntime()
+Error [GENERAL | xrEnumerateInstanceExtensionProperties | OpenXR-Loader] : Failed querying extension properties
+ERROR: OpenXR: Failed to enumerate number of extension properties
+   at: load_supported_extensions (modules/openxr/openxr_api.cpp:429)
+WARNING: OpenXR was requested but failed to start.
+HMD was not detected or a required feature was not supported.
+
+Check logged errors in debugger for more details.
+
+Godot will start in normal mode.
+
+     at: initialize_openxr_module (modules/openxr/register_types.cpp:262)
+Vulkan 1.4.341 - Forward+ - Using Device #1: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+[TEST] mode: Desktop, XR available: false
+[TEST] info  renderer: forward_plus
+[TEST] info  window (960.0, 1050.0): menu fits=true scale=0.64
+[TEST] info  window (800.0, 1000.0): menu fits=true scale=0.64
+[TEST] info  window (800.0, 600.0): menu fits=true scale=0.95
+[TEST] info  window (1920.0, 1080.0): menu fits=true scale=1.00
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/00_overview_surface_plot.png
+[TEST] PASS  W flies the camera forward (2.50 m)
+[TEST] PASS  E raises the camera
+[TEST] PASS  right-drag rotates the view
+[TEST] PASS  F1 toggle: XR only activates when a runtime exists
+[TEST] PASS  arrow keys move the surface marker (1.00, 0.50) -> (1.76, 0.96)
+[TEST] PASS  tangent plane follows the marker
+[TEST] PASS  gradient arrow follows the marker
+[TEST] PASS  numerical ∂f/∂x matches cos(x)cos(y) (-0.10836 vs -0.10836)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/01_surface_plot.png
+[TEST] PASS  function box shows the surface's f(x, y)
+[TEST] PASS  typing w/a/s/d in the box does not move the camera
+[TEST] PASS  unknown names are reported: ✗ Unknown name 'w' (use x, y)
+[TEST] PASS  typed x^2 - y^2 is plotted (∂f/∂x = 3.521, 2x = 3.521)
+[TEST] PASS  tall surface is squashed to fit (×0.17)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/01b_surface_custom.png
+[TEST] PASS  partly undefined function (hemisphere) still plots
+[TEST] PASS  steep slope keeps the tangent plane and ∇f arrow a sane size
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/01c_surface_hemisphere.png
+[TEST] PASS  clicking the 3D panel button opens Solid of Revolution
+[TEST] PASS  mouse wheel moves the slicing plane (2.00 -> 2.50)
+[TEST] PASS  cross-section disk radius = √x (1.581)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/02_solid_of_revolution.png
+[TEST] PASS  keypad-typed sphere √(4-(x-2)²): V = 33.510 (32π/3 = 33.510)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/02b_solid_sphere.png
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/02d_keypad.png
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/02c_solid_wavy.png
+[TEST] PASS  5×5×5 = 125 arrows
+[TEST] PASS  |F| max arrow is red (1.0, 0.2, 0.1, 1.0)
+[TEST] PASS  small |F| arrow is blue-ish (0.0414, 0.8707, 0.7101, 1.0)
+[TEST] PASS  left-click selects the arrow at (1.0, -2.0, 2.0) (got (1.0, -2.0, 2.0))
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/03_vector_field.png
+[TEST] PASS  function box shows F for the vector field
+[TEST] PASS  typed F = (x, y, z): div F = 3.000 (3), |curl F| = 0.0000 (0)
+[TEST] PASS  missing component is reported: ✗ Need 3 components separated by commas, like (−y, x, 0)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/03b_vector_field_custom.png
+[TEST] PASS  sphere travels along the curve (t 0.91 -> 2.42)
+[TEST] PASS  keys change ω and R (ω=1.40, R=1.48)
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/04_parametric_curve.png
+[TEST] PASS  typed circle: arc length 27.827 ≈ 6πR = 27.829
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/04b_parametric_knot.png
+[TEST] screenshot  /home/asmae/VR APPs/vr-calculus/screenshots/04c_keypad_curve.png
+[TEST] DONE  29 checks, 0 failures

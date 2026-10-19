@@ -1,0 +1,3 @@
+#!/bin/bash
+# Launch the VR Calculus app (desktop mode; uses OpenXR if a headset is connected).
+exec godot --path "$(dirname "$(realpath "$0")")" "$@"

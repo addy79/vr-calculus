@@ -1,0 +1,92 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Shader" path="res://shaders/grid.gdshader" id="2_grid"]
+[ext_resource type="Script" path="res://scripts/core/topic_panel.gd" id="3_panel"]
+[ext_resource type="Script" path="res://scripts/core/free_fly_camera.gd" id="4_camera"]
+[ext_resource type="Script" path="res://scripts/core/desktop_pointer.gd" id="5_pointer"]
+[ext_resource type="Script" path="res://scripts/core/xr_pointer.gd" id="6_xr_pointer"]
+[ext_resource type="Script" path="res://scripts/core/hud.gd" id="7_hud"]
+[ext_resource type="Script" path="res://scripts/core/function_pad.gd" id="8_pad"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.2, 0.36, 0.66, 1)
+sky_horizon_color = Color(0.66, 0.73, 0.84, 1)
+ground_bottom_color = Color(0.08, 0.09, 0.11, 1)
+ground_horizon_color = Color(0.66, 0.73, 0.84, 1)
+
+[sub_resource type="Sky" id="Sky_main"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 2
+sky = SubResource("Sky_main")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.35
+fog_enabled = true
+fog_light_color = Color(0.62, 0.7, 0.82, 1)
+fog_density = 0.004
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grid"]
+shader = ExtResource("2_grid")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_floor"]
+material = SubResource("ShaderMaterial_grid")
+size = Vector2(100, 100)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.81915, -0.46985, 0.32899, 0, 0.57358, 0.81915, -0.57358, -0.67101, 0.46985, 0, 8, 0)
+light_energy = 1.1
+shadow_enabled = true
+directional_shadow_max_distance = 40.0
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_floor")
+
+[node name="TopicRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="TopicPanel" type="Node3D" parent="."]
+transform = Transform3D(0.78801, 0, 0.61566, 0, 1, 0, -0.61566, 0, 0.78801, -2.7, 2.1, 2.0)
+script = ExtResource("3_panel")
+
+[node name="FunctionPad" type="Node3D" parent="."]
+transform = Transform3D(0.78801, 0, -0.61566, 0, 1, 0, 0.61566, 0, 0.78801, 2.7, 2.3, 2.0)
+script = ExtResource("8_pad")
+
+[node name="DesktopCamera" type="Camera3D" parent="."]
+current = true
+fov = 70.0
+script = ExtResource("4_camera")
+
+[node name="DesktopPointer" type="Node" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("5_pointer")
+camera = NodePath("../DesktopCamera")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="LeftHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.2, -0.3)
+tracker = &"left_hand"
+script = ExtResource("6_xr_pointer")
+
+[node name="RightHand" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.2, -0.3)
+tracker = &"right_hand"
+script = ExtResource("6_xr_pointer")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("7_hud")
